@@ -33,7 +33,6 @@ ax.plot(x1, y1, t, '-b', lw=4)
 ax.plot(x2, y2, t, '-b', lw=4)
 ax.set_xlim([-3,3])
 ax.set_ylim([-3,3])
-ax.legend()
 
 pl.show()
 
