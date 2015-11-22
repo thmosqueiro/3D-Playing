@@ -1,11 +1,15 @@
 CC = gcc
-LDFLAGS= -lm -lcvode -lcvodeserial
+LDFLAGS= -L/usr/lib64 -lsundials_cvode -lsundials_nvecserial -lm
+
 
 lorentz: $(OBJECTS)
-	$(CC) -o Lorentz lorentz.c $(LDFLAGS)
+	$(CC) -o Lorentz Lorentz.c $(LDFLAGS)
 
 
-all : lorentz
+run: Lorentz
+	./Lorentz
+
+all : lorentz run clean
 
 clean :
-	rm -f *.o *~
+	rm -f *.o *~ Lorentz

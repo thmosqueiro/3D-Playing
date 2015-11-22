@@ -16,13 +16,14 @@
 
 #define Ith(v,i)    NV_Ith_S(v,i-1)
 
-#define NEQ   3
-#define RTOL  RCONST(1.0e-6)
-#define ATOL1 RCONST(7.0e-9)
-#define T0    RCONST(0.0)
-#define T1    RCONST(1.0)
-#define TMULT RCONST(0.001)
-#define NOUT  -1
+#define NEQ        3
+#define RTOL       RCONST(1.0e-9)
+#define ATOL1      RCONST(1.0e-9)
+#define T0         RCONST(0.0)
+#define T1         RCONST(1.0)
+#define TMULT      RCONST(0.01)
+#define NOUT       -1
+#define TotalTime  RCONST(39.5)
 
 static int f(realtype t, N_Vector y, N_Vector ydot);
 static int check_flag(void *flagvalue, char *funcname, int opt);
@@ -92,7 +93,7 @@ int main(int argc, char **argv)
     if (check_flag(&flag, "CVode", 1)) break;
     if (flag == CV_SUCCESS)
     {
-      if ( tout > 3000. ) break;
+      if ( tout > TotalTime ) break;
 
       // Printing the output
 
@@ -123,7 +124,7 @@ int main(int argc, char **argv)
 
 static void PrintOutput(FILE *ar, double t, N_Vector y)
 {
-  fprintf(ar,"%lg %lg %lg %lg \n", t, Ith(y,1), Ith(y,2), Ith(y,3));
+  fprintf(ar,"%lg %lg %lg \n", Ith(y,1), Ith(y,2), Ith(y,3));
   return;
 }
 
